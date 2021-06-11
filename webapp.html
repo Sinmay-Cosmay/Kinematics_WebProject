@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background:#E7DFD4 0% 0%;
+}
+
+.topnav {
+  overflow:auto;
+  background: white;
+}
+
+.topnav a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+.active img{
+    height:25px;
+    width:25px;
+}
+.dot img{
+  height:150px;
+  width:150px;
+  display: inline-block;
+}
+.dot img:hover{
+  cursor:pointer;
+  width:155px;
+  height:155px;
+}
+.circlepad{
+    padding-top: 5%;
+}
+.circle {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    display: inline-block;
+    position: absolute;
+    border: 4px solid #666666;
+}
+.laundry{
+  margin-left:-150px;
+}
+.laundry img{
+  padding-top:10px;
+  height:50px;
+  width:50px
+}
+.laundry p{
+  color:#58595B;
+  font-weight: 700;
+  font-style: italic;
+}
+.circle.big {
+    margin-top:15%;
+}
+.one {
+    top:-220px;
+    right:0px;
+}
+
+.two {
+    top: -100px;
+    left: 220px;
+}
+
+.three {
+    right: -220px;
+    bottom: -100px;
+}
+
+
+.four {
+    left: 0px;
+    bottom: -220px;
+}
+
+.five {
+    top: -100px;
+    right: 220px;
+}
+
+.six {
+    right: 220px;
+    bottom: -100px;
+}
+.refresh{
+  text-align:center;
+  font-size:46px;
+  color:#303030;
+  font-family:"Corbel";
+  font-weight: 500;
+}
+.know{
+  position:absolute;
+  top:1200px;
+  margin-left:32%;
+  padding-bottom:100px;
+}
+.know button{
+  width:550px;
+  height:100px;
+  font-size:40px;
+  background-color: #C64C55;
+  color:#FFFFFF;
+  border-radius:28px;
+  border:0px solid #C64C55;
+}
+.square{
+  border-radius:18px;
+  border:0px;
+  padding:10px 15px;
+  box-shadow:0px 8px 15px rgba(0,0,0,0.1);
+}
+.square1{
+  border-radius:18px;
+  border:0px;
+  padding:10px 15px;
+  height:50px;
+  width:50px;
+  background-image: url("https://image.flaticon.com/icons/png/512/51/51649.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-shadow:0px 8px 15px rgba(0,0,0,0.1);
+}
+@media only screen and (max-width: 768px){
+  .topnav{
+    width:100%;
+  }
+  .laundry{
+    padding-top:15%;
+  }
+  .know{
+    margin-left: 15%;
+  }
+}
+</style>
+</head>
+<body>
+  <div class="topnav">
+  <a class="active" href="home.html"><button class="square"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Ic_arrow_back_36px.svg/480px-Ic_arrow_back_36px.svg.png"></button></a>
+  <a class="active" href="#menu"><button class="square1"></button></a>
+</div>
+
+<div class="circlepad" style="text-align:center">
+    <span class="dot" id="dotid" onclick="myFunction()"><img src="d.png"></span>
+    <span class="dot" id="dotid" onclick="myFunction()"><img src="c.png"></span>
+    <span class="dot" id="dotid" onclick="myFunction()"><img src="b.png"></span>
+    <span class="dot" id="dotid" onclick="myFunction()"><img src="a.png"></span>
+  </div>
+  <script>
+    function myFunction(){
+      location.replace("home.html");
+    }
+  </script>
+  <p class="refresh">REFRESH YOUR</br>LAUNDRY LIKE IT'S</br>NEW</p>
+<div class="laundry" align="center">
+  <div id="big-circle" class="circle big"><img src="Group 332.svg"><p>Pure Steam</br>Refresh</p>
+    <div class="circle one"><img src="Group 333.svg"><p>Remove</br>creasing</p></div>
+    <div class="circle two"><img src="Group 334.svg"><p>Odour-free</br>clothes</p></div>
+    <div class="circle three"><img src="Path 2838.svg"><p>Ready-to-wear</br>clothes in just</br>40 mins</p></div>
+    <div class="circle four"><img src="Group 336 (1).svg"><p>Avoid any</br>dust/germ</br>allergies</p></div>
+    <div class="circle five"><img src="Group 332.svg"><p>99.99%</br>Germ-free</br>clothes</p></div>
+    <div class="circle six"><img src="Group 336.svg"><p>Fragrant</br>and hygienic</br>clothes</p></div>
+</div>
+</div>
+<form>
+<div class="know">
+<button>KNOW MORE</button>
+</div>
+</form>
+</body>
+<script>
+  function available(){
+    if(!navigator.bluetooth){
+      console.log("Bluetooth not available");
+      return false;
+    }
+    return true;
+  }
+  function info(){
+    let options={
+      acceptAllDevices:true
+    }
+    console.log('Requesting BLE Device Info...')
+    navigator.bluetooth.requestDevice(options).then(device =>{
+      console.log('Name: ' + device.name)
+    }).catch(error =>{
+      console.log('Request device error: ' + error)
+    })
+  }
+  document.querySelector('form').addEventListener('submit',function(event){
+    event.stopPropagation()
+    event.preventDefault()
+    if(available()){
+      info()
+    }
+  })
+</script>
+</html>
